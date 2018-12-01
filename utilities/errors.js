@@ -37,6 +37,7 @@ module.exports.noUser = (message) => {
     message.channel.send(embed).then (m => m.delete(50000))
 }
 
+//When no time is specified
 module.exports.noTime = (message) => {
     let embed = new Discord.RichEmbed()
     .setDescription ("No Time Detected")
@@ -48,9 +49,35 @@ module.exports.noTime = (message) => {
     message.channel.send(embed).then (m => m.delete(50000))
 }
 
+//When role is not listed or already has role
+module.exports.noRole = (message) => {
+    let embed = new Discord.RichEmbed()
+    .setDescription ("Role Error")
+    .setColor (config.blue)
+    .setAuthor (`${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
+    .addField ('User', `${message.author} whose ID is ${message.author.id}`)
+    .addField ('Role Syntax Eror', 'Role does not exist or user already has it')
+    .addField ('At', message.createdAt)
+    message.channel.send(embed).then (m => m.delete(50000))
+}
+
+//No admin specified
+module.exports.noAdmin = (message) => {
+  let embed = new Discord.RichEmbed()
+    .setDescription ('Admin  not specified')
+    .setColor (config.blue)
+    .setAuthor ('User', `${message.author} whose ID is ${message.author.id}`)
+    .addField ('Admin was not specified',`In message "${message}"`)
+    .addField ('At', message.createdAt)
+    message.channel.send(embed).then (m => m.delete(50000))
+}
+
+
 /*To go in cmd
 errors.noUser(message);
 errors.noPerms(message, perm);
 errors.hasPerms(message,perm);
 errors.noTime(message);
+errors.noRole(message);
+errors.noAdmin(message)
 */

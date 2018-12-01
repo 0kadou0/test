@@ -7,15 +7,15 @@ module.exports.run = async(client, message, args) =>{
     if(!rolePermission) return errors.noPerms(message, 'ADMINISTRATOR');
     let newMember = message.mentions.members.first()
     console.log(newMember)
-    if(!newMember) return message.channel.send('Could not detect user, please try again')
+    if(!newMember) return errors.noUser(message)
     let toJoin = args.join(' ').slice(22);
-    if(!toJoin) return message.channel.send('Could not detect role, please try again');
+    if(!toJoin) return errors.noRole(message);
     let joiningRole = message.guild.roles.find('name', toJoin)
-    if(!joiningRole) return message.channel.send('That role does not exist, please try again');
+    if(!joiningRole) return errors.noRole(message);
 
     if(!newMember.roles.has(joiningRole.id)) return message.channel.send('User does not have specified role');
     await(newMember.removeRole(joiningRole.id));
-    
+
 }
 
 module.exports.help = {

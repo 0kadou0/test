@@ -6,7 +6,15 @@ module.exports.run = async(client, message, args) =>{
     console.log(rPermission)
     if(!rPermission) return errors.noPerms(message, 'OWNER');
     let reportchan = message.guild.channels.find('name','reports')
-    if (!reportchan) return message.channel.send ("Please create a valid reports channel")
+    if (!reportchan){}
+        try{
+            reportcreate = await message.guild.createChannel({
+                name: 'reports'//,
+                //permissions:[]
+            })}
+        catch(e){
+            console.log(e.stack)
+        }
     let rUser = message.mentions.members.first()
     if(!rUser) return message.channel.send('Could not detect user, please try again')
     console.log(rUser)

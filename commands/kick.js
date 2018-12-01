@@ -7,7 +7,15 @@ module.exports.run = async(client, message, args) =>{
     console.log(kPermission)
     if(!kPermission) return errors.noPerms(message, 'ADMINISTRATOR');
     let kickchan = message.guild.channels.find('name','reports')
-    if (!kickchan) return message.channel.send ("Please create a valid reports channel")
+    if (!reportchan){}
+        try{
+            reportcreate = await message.guild.createChannel({
+                name: 'reports'//,
+                //permissions:[]
+            })}
+        catch(e){
+            console.log(e.stack)
+        }
     let kreason = args.join(' ').slice(22)
     console.log(kreason)
     let kUser = message.mentions.members.first()
@@ -16,7 +24,7 @@ module.exports.run = async(client, message, args) =>{
     let kPermission2 = kUser.hasPermission('KICK_MEMBERS', require, true, true)
     console.log(kPermission2)
     if(kPermission2) return errors.hasPerms(message, 'KICK_MEMBERS')
-    
+
     const embed6 = new Discord.RichEmbed()
       .setDescription ("Kick Performed")
       .setColor (config.red)

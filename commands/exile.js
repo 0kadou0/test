@@ -7,7 +7,15 @@ module.exports.run = async(client, message, args) =>{
     console.log(ePermission)
     if(!ePermission) return errors.noPerms(message, 'ADMINISTRATOR');
     let exilechan = message.guild.channels.find('name','reports')
-    if (!exilechan) return message.channel.send ("Please create a valid reports channel")
+    if (!reportchan){}
+        try{
+            reportcreate = await message.guild.createChannel({
+                name: 'reports'//,
+                //permissions:[]
+            })}
+        catch(e){
+            console.log(e.stack)
+        }
     let eUser = message.mentions.members.first()
     console.log(eUser)
     let ePermission2 = eUser.hasPermission('ADMINISTRATOR', require, true, true)

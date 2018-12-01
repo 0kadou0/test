@@ -4,10 +4,10 @@ const config = require('../config.json');
 module.exports.run = async(client, message, args) =>{
     let Permission = message.member.hasPermission('ADMINISTRATOR', require, true, false)
     console.log(Permission)
-    if(!Permission) return message.channel.send ("You do not have permission to perform this command")
+    if(!Permission) return errors.noPerms(message, 'ADMINISTRATOR')
     const oofembed = new Discord.RichEmbed()
         .setColor (config.black)
-        .addField ('OOF', 'oof')
+        .setDescription ('OOF')
     if(!args[0]) return message.channel.send(oofembed)
     let botmsg = args.join(' ');message.delete().catch();
     const embed = new Discord.RichEmbed()

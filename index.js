@@ -10,7 +10,7 @@ fs.readdir('./commands/', (err, file) =>{
   if(err) console.log(err)
   let jsfile = file.filter(f => f.split(".").pop() === 'js')
   if(jsfile.length <= 0){
-    console.log('Could not find commands')
+    console.log('Could not find commands...')
     return;
   }
   jsfile.forEach((f, i) =>{
@@ -43,7 +43,7 @@ client.on('message', async message => {
   //Command File
   let commandfile = client.commands.get(command.slice(prefix.length));
   if(commandfile) commandfile.run(client,message,args)
-  
+
 });
 
 
@@ -52,7 +52,7 @@ client.on('message', async message => {
 client.on('guildMemberAdd', member => {
   const welcChannel = member.guild.channels.find(ch => ch.name === 'welcome');
   if (!welcChannel) return message.channel.send('Plase create a valid welcome channel');
-  welcChannel.send(`The botbois welcome you ${member}. If you need help, simply type _help. For bot info type _botinfo.`);
+  welcChannel.send(`The botbois welcome you ${member}. If you need help, simply type _help. To contact admins, type _admin`);
 });
 
 //Leaving Message
@@ -65,4 +65,3 @@ client.on('guildMemberRemove', member =>{
 
 //Login Token
 client.login(config.token);
-

@@ -16,7 +16,7 @@ module.exports.run = async(client, message, args) =>{
         catch(e){
             console.log(e.stack)
         }
-        
+
     let rUser = message.mentions.members.first()
     if(!rUser) return errors.noUser(message)
     console.log(rUser)

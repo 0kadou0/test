@@ -6,8 +6,11 @@ module.exports.run = async(client, message, args) =>{
     let Permission = message.member.hasPermission('ADMINISTRATOR', require, true, false)
     console.log(Permission)
     if(!Permission) return errors.noPerms(message, 'ADMINISTRATOR');
-    if(!args[0]) return message.channel.send('oof')
-    message.channel.bulkDelete(args[0]).then (() =>{
+    if(!args[0]) return message.channel.send('Specify a number to clear.')
+    if(args[0] > 100) return message.channel.send('Number to clear must be less than 100.')
+    delete = args[0]
+    message.delete().catch(console.error);
+    message.channel.bulkDelete(delete).then (() =>{
         const embed = new Discord.RichEmbed()
       .setDescription ("Clear Performed")
       .setColor (config.blue)
@@ -16,7 +19,6 @@ module.exports.run = async(client, message, args) =>{
       .addField ('Amount Cleared', `${args[0]} message(s)`)
       .addField ('Cleared In', message.channel)
       .addField ('Cleared At', message.createdAt)
-      message.delete().catch(console.error);
       message.channel.send(embed).then(msg => msg.delete(50000));
     })
 }
