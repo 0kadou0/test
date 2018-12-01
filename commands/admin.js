@@ -14,7 +14,7 @@ module.exports.run = async(client, message, args) =>{
   if (!chan){}
       try{
           create = await message.guild.createChannel({
-              name: 'admin-requests'
+              name: 'requests'
               //permissions:[]
           })}
       catch(e){
