@@ -1,5 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+
+const path = require("path");
 global.rootDir = path.resolve(__dirname) + "/";
 const config = require(rootDir + "config.json");
 const fs = require('fs')

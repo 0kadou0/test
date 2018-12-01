@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
-const errors = require('../utilities/errors.js');
-const config = require('../config.json');
+const config = require(rootDir + "config.json");
+const errors = require(rootDir + "utilities/errors.js");
 const ms = require('ms');
 
 module.exports.run = async(client, message, args) =>{
@@ -22,7 +22,7 @@ module.exports.run = async(client, message, args) =>{
     let tPermission = tomute.hasPermission('KICK_MEMBERS', require, true, true)
     if (tPermission) return errors.hasPerms(message, 'KICK_MEMBERS')
     let muterole = message.guild.roles.find('name', 'muted');
-    
+
     if(!muterole){
         try{
             muterole = await message.guild.createRole({
@@ -40,11 +40,11 @@ module.exports.run = async(client, message, args) =>{
             console.log(e.stack)
         }
     }
-   
+
     let mutetime = args[1];
     if(!mutetime) return errors.noTime(message);
     await(tomute.addRole(muterole.id))
-    
+
     const embed9 = new Discord.RichEmbed()
       .setDescription ("Tempmute Performed")
       .setColor (config.red)
@@ -56,12 +56,12 @@ module.exports.run = async(client, message, args) =>{
       .addField ('Muted At', message.createdAt)
       message.delete().catch(console.error);
       mutechan.send(embed9);
-    
+
     setTimeout(function(){
         tomute.removeRole(muterole.id);
         mutechan.send(`<@${tomute.id}> has been unmuted`)
     }, ms(mutetime))
-      
+
 }
 
 module.exports.help = {

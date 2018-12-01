@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
-const config = require('../config.json');
+const config = require(rootDir + "config.json");
+const errors = require(rootDir + "utilities/errors.js");
 
 module.exports.run = async(client, message, args) =>{
     let boticon = client.user.displayAvatarURL
@@ -11,7 +12,7 @@ module.exports.run = async(client, message, args) =>{
             .addField ('Bot Name', client.user.username)
             .addField ('Bot Version', config.version)
             .addField ('Created On', client.user.createdAt)
-            .addField ('Command Prefix', '_') 
+            .addField ('Command Prefix', '_')
             message.channel.send(embed3)
 }
 

@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
-const config = require('../config.json');
+const config = require(rootDir + "config.json");
+const errors = require(rootDir + "utilities/errors.js");
 
 module.exports.run = async(client, message, args) =>{
     let testhelpchan = message.guild.channels.find('name','help')

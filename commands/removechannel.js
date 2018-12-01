@@ -1,12 +1,13 @@
 const Discord = require('discord.js');
-const errors = require('../utilities/errors.js');
+const config = require(rootDir + "config.json");
+const errors = require(rootDir + "utilities/errors.js");
 
 module.exports.run = async(client, message, args) =>{
     let Permission = message.member.hasPermission('ADMINISTRATOR', require, true, false)
     console.log(Permission)
     if(!Permission) return errors.noPerms(message, 'ADMINISTRATOR');
     console.log(args)
-    let toRemove = args[0]  
+    let toRemove = args[0]
     console.log(toRemove)
     if(!toRemove) return message.channel.send('Could not detect channel name, please try again');
     let removingChannel = message.guild.channels.find('name', toRemove)

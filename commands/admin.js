@@ -1,12 +1,12 @@
 const Discord = require('discord.js');
-const errors = require('../utilities/errors.js');
-const config = require('../config.json');
+const config = require(rootDir + "config.json");
+const errors = require(rootDir + "utilities/errors.js");
 
 module.exports.run = async(client, message, args) =>{
   let user = message.mentions.members.first()
   if(!user) return errors.noUser(message)
   console.log(user)
-  let permission = rUser.hasPermission('ADMINISTRATOR', require, true, true)
+  let permission = user.hasPermission('ADMINISTRATOR', require, true, true)
   console.log(permission)
   if(!permission) return errors.noAdmin(message)
   let reason = args.join(' ').slice(22)
@@ -32,7 +32,7 @@ module.exports.run = async(client, message, args) =>{
   message.delete().catch(console.error);
   reportchan.send(embed5)
 }
-}
+
 
 module.exports.help = {
     name:'request'

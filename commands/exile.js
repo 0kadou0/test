@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
-const errors = require('../utilities/errors.js');
-const config = require('../config.json');
+const config = require(rootDir + "config.json");
+const errors = require(rootDir + "utilities/errors.js");
 
 module.exports.run = async(client, message, args) =>{
     let ePermission = message.member.hasPermission('ADMINISTRATOR', require, true, true)
