@@ -9,7 +9,7 @@ client.commands = new Discord.Collection()
 client.commandss = [];
 
 //Loading Modules
-fs.readdir('./commands/', (err, file) =>{
+fs.readdir(rootDir + 'commands', (err, file) =>{
   if(err) console.log(err)
   let jsfile = file.filter(f => f.split(".").pop() === 'js')
   if(jsfile.length <= 0){
