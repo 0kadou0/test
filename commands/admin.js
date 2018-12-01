@@ -10,13 +10,12 @@ module.exports.run = async(client, message, args) =>{
   console.log(permission)
   if(!permission) return errors.noAdmin(message)
   let reason = args.join(' ').slice(22)
-  let chan = message.guild.channels.find('name', 'admin-requests')
+  let chan = message.guild.channels.find('name','requests')
   if (!chan){}
       try{
           create = await message.guild.createChannel({
               name: 'requests'
-              //permissions:[]
-          })}
+            })}
       catch(e){
           console.log(e.stack)
       }
@@ -29,8 +28,8 @@ module.exports.run = async(client, message, args) =>{
     .addField ('Reason Requested', reason)
     .addField ('Requested In', message.channel)
     .addField ('Requested At', message.createdAt)
-  message.delete().catch(console.error);
-  reportchan.send(embed5)
+    chan.send(embed)
+    message.delete().catch(console.error);
 }
 
 

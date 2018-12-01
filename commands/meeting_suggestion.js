@@ -30,7 +30,7 @@ module.exports.run = async(client, message, args) =>{
     .addField ('Submitted In', message.channel)
     .addField ('Submitted At', message.createdAt)
   message.delete().catch(console.error);
-  reportchan.send(embed5)
+  chan.send(embed)
 
 }
 
