@@ -72,6 +72,17 @@ module.exports.noAdmin = (message) => {
     message.channel.send(embed).then (m => m.delete(50000))
 }
 
+//When an error is needed for one specific command
+module.exports.genError = (message, error) => {
+  let embed = new Discord.RichEmbed()
+    .setDescription ('Error Identified')
+    .setColor (config.blue)
+    .setAuthor('User', `${message.author} whose ID id ${message.author.id}`)
+    .addField ('Error', error)
+    .addField ('At', message.createdAt)
+    message.channel.send(embed).then (m => m.delete(50000))
+}
+
 
 /*To go in cmd
 errors.noUser(message);
@@ -79,5 +90,6 @@ errors.noPerms(message, perm);
 errors.hasPerms(message,perm);
 errors.noTime(message);
 errors.noRole(message);
-errors.noAdmin(message)
+errors.noAdmin(message);
+errors.genError(message, error);
 */
